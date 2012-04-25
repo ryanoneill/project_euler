@@ -6,16 +6,16 @@
 // Find the sum of all the multiples of 3 or 5 below 1000.
 
 object Problem01 {
-	def main(args: Array[String]) {
-		val output = "Sum of [3,5] multiples below %d: "
+  def main(args: Array[String]) {
+    val output = "Sum of [3,5] multiples below %d: "
 
-		val verify = multipleSum(10)
-		println(output.format(10) + verify)
+    val verify = multipleSum(10)
+    println(output.format(10) + verify)
 
-		val answer = multipleSum(1000)
-		println(output.format(1000) + answer)
-	}
+    val answer = multipleSum(1000)
+    println(output.format(1000) + answer)
+  }
 
-	def multipleSum(upperLimit: Int) = 
-		(1 until upperLimit).filter(x => (x % 3 == 0) || (x % 5 == 0)).sum
+  def multipleSum(upperLimit: Int) = 
+    (1 until upperLimit).filter(x => (x % 3 == 0) || (x % 5 == 0)).sum
 }

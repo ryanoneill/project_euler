@@ -9,15 +9,15 @@
 // Find the product abc.
 
 object Problem09 {
-	def main(args: Array[String]) {
-		val answerList = 
-		    for {
-		    	a <- (1 to 333).toList
-		    	b <- (a to 500).toList
-		    	c <- (b to 1000).toList
-		    	d = (a, b, c) if (a + b + c == 1000)
-		    	e = (a * b * c) if ((a * a) + (b * b) == (c * c))
-		    } yield e
-		println("Pythagorean triplet product: " + answerList.head)
-	}
+  def main(args: Array[String]) {
+    val answerList = 
+      for {
+        a <- (1 to 333).toList
+        b <- (a to 500).toList
+        c <- (b to 1000).toList
+        d = (a, b, c) if (a + b + c == 1000)
+        e = (a * b * c) if ((a * a) + (b * b) == (c * c))
+      } yield e
+    println("Pythagorean triplet product: " + answerList.head)
+  }
 }

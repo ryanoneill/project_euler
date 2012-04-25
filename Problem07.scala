@@ -5,17 +5,17 @@
 // What is the 10 001st prime number?
 
 object Problem07 {
-	def main(args: Array[String]) {
-		val numbers = (2 to 1000000).toList
-		println("6th Prime Number: " + nthPrime(6, numbers))
+  def main(args: Array[String]) {
+    val numbers = (2 to 1000000).toList
+    println("6th Prime Number: " + nthPrime(6, numbers))
 
-		println("10,001st Prime Number: " + nthPrime(10001, numbers))
-	}
+    println("10,001st Prime Number: " + nthPrime(10001, numbers))
+  }
 
-	def nthPrime(index: Int, numbers: List[Int]): Int = {
-		numbers match {
-			case x :: xs => if (index == 1) x else nthPrime(index - 1, xs.filter(y => y % x != 0))
-			case _       => throw new IllegalArgumentException
-		}
-	}
+  def nthPrime(index: Int, numbers: List[Int]): Int = {
+    numbers match {
+      case x :: xs => if (index == 1) x else nthPrime(index - 1, xs.filter(y => y % x != 0))
+      case _       => throw new IllegalArgumentException
+    }
+  }
 }
