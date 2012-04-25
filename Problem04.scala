@@ -5,7 +5,7 @@
 
 // Find the largest palindrome made from the product of two 3-digit numbers.
 
-object Problem03 {
+object Problem04 {
 	def main(args: Array[String]) {
 
 		val twoDigitNumbers = (10 to 99).toList
