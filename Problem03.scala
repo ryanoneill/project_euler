@@ -17,17 +17,17 @@ object Problem03 {
 			case _ => factors(value).sortWith(_ > _).filter(isPrime).max
 		}
 
-	def isPrime(value : Long) : Boolean =
+	def isPrime(value: Long) : Boolean =
 		if (value == 2) true else primeTest(value, math.sqrt(value).toLong)
 
-	def primeTest(value : Long, attempt : Long) : Boolean = 
+	def primeTest(value: Long, attempt: Long): Boolean = 
 		attempt match {
 			case 1 => true
 			case _ if (value % attempt == 0) => false
 			case _ => primeTest(value, attempt - 1)
 		}
 
-	def factors(value : Long) : List[Long] = {
+	def factors(value: Long): List[Long] = {
 		val factorLimit = math.max(math.sqrt(value).toInt, 2)
 		val smallFactors = (2 to factorLimit).toList.filter(value % _ == 0).map(_.toLong)
 		val largeFactors = smallFactors.map(value / _)

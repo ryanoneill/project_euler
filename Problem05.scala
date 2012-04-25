@@ -5,7 +5,7 @@
 //What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
 object Problem05 {
-	def main(args : Array[String]) {
+	def main(args: Array[String]) {
 		val numbersToTen = (1 to 10).toList
 		println("Lowest Common Multiple of 1 to 10: " + lcmList(numbersToTen))
 

@@ -1,4 +1,4 @@
-// http://projecteuler.net/problem=1
+// http://projecteuler.net/problem=4
 
 // A palindromic number reads the same both ways. The largest palindrome made
 // from the product of two 2-digit numbers is 9009 = 91 99.
@@ -15,7 +15,7 @@ object Problem03 {
 		println("Largest Palindrome Product of 3-Digit Numbers: " + maxPalindromeProduct(threeDigitNumbers))
 	}
 
-	def maxPalindromeProduct(numbers : List[Int]) = {
+	def maxPalindromeProduct(numbers: List[Int]) = {
 		val palindromes = 
 			for {
 				a <- numbers
