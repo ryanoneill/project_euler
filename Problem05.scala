@@ -1,20 +1,23 @@
 // http://projecteuler.net/problem=5
 
-//2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+// 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 
-//What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+// What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
 object Problem05 {
   def main(args: Array[String]) {
-    val numbersToTen = (1 to 10).toList
-    println("Lowest Common Multiple of 1 to 10: " + lcmList(numbersToTen))
-
-    val numbersToTwenty = (1 to 20).toList
-    println("Lowest Common Multiple of 1 to 20: " + lcmList(numbersToTwenty))
+    println("Lowest Common Multiple of 1 to 10: " + lcmOfUpTo(10))
+    println("Lowest Common Multiple of 1 to 20: " + lcmOfUpTo(20))
   }
 
-  def lcmList(numbers: List[Int]) = 
-    numbers.foldLeft(1)(lcm)
+  def numsFrom(n: Int): Stream[Int] =
+    n #:: numsFrom(n+1)
+
+  def numsFromTo(m: Int, n: Int): Stream[Int] =
+    numsFrom(m).takeWhile(_ <= n)
+
+  def lcmOfUpTo(n: Int): Int =
+    numsFromTo(1,n).fold(1)(lcm)
 
   def lcm(a: Int, b: Int) = 
     ((a.toLong * b.toLong) / gcd(a, b)).toInt
