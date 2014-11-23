@@ -25,6 +25,7 @@
 // The product of these numbers is 26  63  78  14 = 1788696.
 
 // What is the greatest product of four adjacent numbers in any direction (up, down, left, right, or diagonally) in the 2020 grid?
+package com.ryanponeill.euler
 
 object Problem11 {
   def main(args: Array[String]) {

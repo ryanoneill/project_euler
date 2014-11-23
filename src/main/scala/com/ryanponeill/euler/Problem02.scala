@@ -12,6 +12,7 @@
 // F0 = 0
 // F1 = 1
 // Fi = Fi-1 + Fi-2
+package com.ryanponeill.euler
 
 object Problem02 {
   def main(args: Array[String]) {
