@@ -10,15 +10,35 @@
 package com.ryanponeill.euler
 
 object Problem09 {
+  import Euler._
+
+  val answer = "Pythagorean triplet product for %d: %d"
+  val noAnswer = "No answer for %d"
+
   def main(args: Array[String]) {
-    val answerList = 
-      for {
-        a <- (1 to 333).toList
-        b <- (a to 500).toList
-        c <- (b to 1000).toList
-        d = (a, b, c) if (a + b + c == 1000)
-        e = (a * b * c) if ((a * a) + (b * b) == (c * c))
-      } yield e
-    println("Pythagorean triplet product: " + answerList.head)
+    println(go(1000))
   }
+
+  def apply(n: Long): String = go(n)
+
+  def go(n: Long): String = { 
+    pythagoreanTriple(n).map(answer.format(n,_)).getOrElse(noAnswer.format(n))
+  }
+
+  def pythagoreanTriple(n: Long): Option[Long] =
+    numsFromTo(1,third(n)).flatMap(a =>
+      numsFromTo(a,half(n)).flatMap(b =>
+        numsFromTo(b,n).filter(isN(n,a,b)).filter(isSumOfSquares(a,b)).map(a * b * _)
+      )
+    ).headOption
+
+  def isSumOfSquares(a: Long, b: Long): Long => Boolean =
+    (c: Long) => square(a) + square(b) == square(c)
+
+  def isN(n: Long, a: Long, b: Long): Long => Boolean =
+    (c: Long) => a + b + c == n
+
+  def third(n: Long): Long = n / 3
+
+  def half(n: Long): Long = n / 2
 }
