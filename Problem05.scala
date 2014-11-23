@@ -19,9 +19,9 @@ object Problem05 {
   def lcmOfUpTo(n: Int): Int =
     numsFromTo(1,n).fold(1)(lcm)
 
-  def lcm(a: Int, b: Int) = 
+  def lcm(a: Int, b: Int): Int = 
     ((a.toLong * b.toLong) / gcd(a, b)).toInt
 
-  def gcd(a: Int, b: Int) : Int = 
+  def gcd(a: Int, b: Int): Int = 
     if (a == b) a else if (a > b) gcd(a - b, a) else gcd(a, b - a)
 }
