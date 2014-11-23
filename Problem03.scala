@@ -8,29 +8,22 @@ object Problem03 {
   def main(args: Array[String]) {
     //val number = 13195
     val number = 600851475143L
-    println(maxPrimeFactor(number))
+    println(maxPrimeFactorOf(number))
   }
 
-  def maxPrimeFactor(value: Long) = 
-    value match {
-      case _ if (value < 2) => throw new IllegalArgumentException
-      case _ => factors(value).sortWith(_ > _).filter(isPrime).max
-    }
+  def numsFrom(n: Long): Stream[Long] =
+    n #:: numsFrom(n+1)
 
-  def isPrime(value: Long) : Boolean =
-    if (value == 2) true else primeTest(value, math.sqrt(value).toLong)
+  def isPrime(n: Long): Boolean =
+    numsFrom(2).takeWhile(x => x * x < n).forall(x => n % x != 0)
 
-  def primeTest(value: Long, attempt: Long): Boolean = 
-    attempt match {
-      case 1 => true
-      case _ if (value % attempt == 0) => false
-      case _ => primeTest(value, attempt - 1)
-    }
+  def factorsOf(n: Long): Stream[Long] =
+    numsFrom(2).takeWhile(x => x * x < n).filter(x => n % x == 0)
 
-  def factors(value: Long): List[Long] = {
-    val factorLimit = math.max(math.sqrt(value).toInt, 2)
-    val smallFactors = (2 to factorLimit).toList.filter(value % _ == 0).map(_.toLong)
-    val largeFactors = smallFactors.map(value / _)
-    smallFactors ::: largeFactors
-  }
+  def primeFactorsOf(n: Long): Stream[Long] =
+    factorsOf(n).filter(isPrime)
+
+  def maxPrimeFactorOf(n: Long): Long =
+    primeFactorsOf(n).max
+
 }
