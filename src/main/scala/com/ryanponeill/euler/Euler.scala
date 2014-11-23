@@ -70,7 +70,7 @@ object Euler {
   def isMultipleOf(ns: List[Long])(n: Long): Boolean =
     ns.exists(n % _ == 0)
 
-  def getOutput(s: String, f: Long => Long)(n: Long): String =
+  def getOutput[T](s: String, f: T => Long)(n: T): String =
     s.format(n) + f(n).toString
 
   def lcm(a: Long, b: Long): Long = 
@@ -78,4 +78,7 @@ object Euler {
 
   def gcd(a: Long, b: Long): Long = 
     if (a == b) a else if (a > b) gcd(a - b, a) else gcd(a, b - a)
+
+  def nthPrime(n: Int): Long =
+    numsFrom(2).filter(isPrime).drop(n-1).head
 }

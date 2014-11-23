@@ -6,17 +6,17 @@
 package com.ryanponeill.euler
 
 object Problem07 {
-  def main(args: Array[String]) {
-    val numbers = (2 to 1000000).toList
-    println("6th Prime Number: " + nthPrime(6, numbers))
+  import Euler._
 
-    println("10,001st Prime Number: " + nthPrime(10001, numbers))
+  def main(args: Array[String]) {
+    println(go(6))
+    println(go(10001))
   }
 
-  def nthPrime(index: Int, numbers: List[Int]): Int = {
-    numbers match {
-      case x :: xs => if (index == 1) x else nthPrime(index - 1, xs.filter(y => y % x != 0))
-      case _       => throw new IllegalArgumentException
-    }
+  def apply(n: Int): String = go(n)
+
+  def go(n: Int): String = {
+    val output = "nth Prime Number - %d: "
+    getOutput(output, nthPrime)(n)
   }
 }
