@@ -12,21 +12,22 @@
 
 object Problem06 {
   def main(args: Array[String]) {
-    val numbersToTen = (1 to 10).toList
-    println("Difference of Squares of 1 to 10: " + differenceSquares(numbersToTen))
-
-    val numbersToHundred = (1 to 100).toList
-    println("Difference of Squares of 1 to 100: " + differenceSquares(numbersToHundred))
+    println("Difference of Squares of 1 to 10: " + diffSquaresFromTo(1,10))
+    println("Difference of Squares of 1 to 100: " + diffSquaresFromTo(1,100))
   }
 
-  def differenceSquares(numbers: List[Int]) =
-    squareOfSums(numbers) - sumOfSquares(numbers)
+  def square(x: Int): Int =
+    x * x
 
-  def sumOfSquares(numbers: List[Int]): Int = 
-    numbers.map(x => x * x).sum
+  def numsFrom(n: Int): Stream[Int] =
+    n #:: numsFrom(n+1)
 
-  def squareOfSums(numbers: List[Int]): Int = {
-    val sum = numbers.sum
-    sum * sum
-  }
+  def numsFromTo(m: Int, n: Int): Stream[Int] =
+    numsFrom(m).takeWhile(_ <= n)
+
+  def diffSquares(xs: Stream[Int]): Int =
+    square(xs.sum) - xs.map(square).sum
+
+  def diffSquaresFromTo(m: Int, n: Int): Int =
+    diffSquares(numsFromTo(m,n))
 }
