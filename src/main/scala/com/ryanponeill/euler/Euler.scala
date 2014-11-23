@@ -7,8 +7,25 @@ object Euler {
   def isEven(n: Long): Boolean =
     n % 2 == 0
 
+  def nDigitLower(n: Long): Long =
+    math.pow(10,n-1).toLong
+
+  def nDigitUpper(n: Long): Long =
+    math.pow(10,n).toLong - 1
+
+  def nDigitNums(n: Long): Stream[Long] =
+    numsFromTo(nDigitLower(n), nDigitUpper(n))
+
+  def isPalindrome(n: Long): Boolean = {
+    val strValue = n.toString
+    strValue == strValue.reverse
+  }
+
   def square(n: Long): Long =
     n * n
+
+  def diffSquares(xs: Stream[Long]): Long =
+    square(xs.sum) - xs.map(square).sum
 
   def isFactorOf(m: Long): Long => Boolean =
     (n: Long) => m % n == 0
@@ -56,4 +73,9 @@ object Euler {
   def getOutput(s: String, f: Long => Long)(n: Long): String =
     s.format(n) + f(n).toString
 
+  def lcm(a: Long, b: Long): Long = 
+    (a * b) / gcd(a, b)
+
+  def gcd(a: Long, b: Long): Long = 
+    if (a == b) a else if (a > b) gcd(a - b, a) else gcd(a, b - a)
 }

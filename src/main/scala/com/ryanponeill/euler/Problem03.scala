@@ -9,9 +9,15 @@ object Problem03 {
   import Euler._
 
   def main(args: Array[String]) {
-    //val number = 13195
-    val number = 600851475143L
-    println(maxPrimeFactorOf(number))
+    println(go(13195))
+    println(go(600851475143L))
+  }
+
+  def apply(n: Long): String = go(n)
+
+  def go(n: Long): String = {
+    val output = "The largest prime factor of %d: "
+    getOutput(output, maxPrimeFactorOf)(n)
   }
 
   def maxPrimeFactorOf(n: Long): Long =

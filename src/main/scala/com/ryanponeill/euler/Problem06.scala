@@ -12,23 +12,20 @@
 package com.ryanponeill.euler
 
 object Problem06 {
+  import Euler._
+
   def main(args: Array[String]) {
-    println("Difference of Squares of 1 to 10: " + diffSquaresFromTo(1,10))
-    println("Difference of Squares of 1 to 100: " + diffSquaresFromTo(1,100))
+    println(go(10))
+    println(go(100))
   }
 
-  def square(x: Int): Int =
-    x * x
+  def apply(n: Long): String = go(n)
 
-  def numsFrom(n: Int): Stream[Int] =
-    n #:: numsFrom(n+1)
+  def go(n: Long): String = {
+    val output = "Difference of Squares of 1 to %d: "
+    getOutput(output, diffSquaresOf)(n)
+  }
 
-  def numsFromTo(m: Int, n: Int): Stream[Int] =
-    numsFrom(m).takeWhile(_ <= n)
-
-  def diffSquares(xs: Stream[Int]): Int =
-    square(xs.sum) - xs.map(square).sum
-
-  def diffSquaresFromTo(m: Int, n: Int): Int =
-    diffSquares(numsFromTo(m,n))
+  def diffSquaresOf(n: Long): Long =
+    diffSquares(numsFromTo(1,n))
 }

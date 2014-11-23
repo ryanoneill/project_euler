@@ -6,23 +6,20 @@
 package com.ryanponeill.euler
 
 object Problem05 {
+  import Euler._
+
   def main(args: Array[String]) {
-    println("Lowest Common Multiple of 1 to 10: " + lcmOfUpTo(10))
-    println("Lowest Common Multiple of 1 to 20: " + lcmOfUpTo(20))
+    println(go(10))
+    println(go(20))
   }
 
-  def numsFrom(n: Int): Stream[Int] =
-    n #:: numsFrom(n+1)
+  def apply(n: Long): String = go(n)
 
-  def numsFromTo(m: Int, n: Int): Stream[Int] =
-    numsFrom(m).takeWhile(_ <= n)
+  def go(n: Long): String = {
+    val output = "Lowest Common Multiple of 1 to %d: "
+    getOutput(output, lcmOfUpTo)(n)
+  }
 
-  def lcmOfUpTo(n: Int): Int =
-    numsFromTo(1,n).fold(1)(lcm)
-
-  def lcm(a: Int, b: Int): Int = 
-    ((a.toLong * b.toLong) / gcd(a, b)).toInt
-
-  def gcd(a: Int, b: Int): Int = 
-    if (a == b) a else if (a > b) gcd(a - b, a) else gcd(a, b - a)
+  def lcmOfUpTo(n: Long): Long =
+    numsFromTo(1,n).fold(1L)(lcm)
 }
