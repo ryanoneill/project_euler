@@ -16,6 +16,9 @@ object Problem01 {
     println(output.format(1000) + answer)
   }
 
-  def multipleSum(upperLimit: Int) = 
-    (1 until upperLimit).filter(x => (x % 3 == 0) || (x % 5 == 0)).sum
+  def numsFrom(start: Int): Stream[Int] =
+    start #:: numsFrom(start+1)
+
+  def multipleSum(upperLimit: Int): Int = 
+    numsFrom(1).takeWhile(_ < upperLimit).filter(x => (x % 3 == 0) || (x % 5 == 0)).sum
 }
