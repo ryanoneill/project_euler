@@ -8,22 +8,25 @@
 // By considering the terms in the Fibonacci sequence whose values do not exceed four million, 
 // find the sum of the even-valued terms.
 
-// Normal Fibonacci Recurrence
-// F0 = 0
 // F1 = 1
+// F2 = 2
 // Fi = Fi-1 + Fi-2
 package com.ryanponeill.euler
 
 object Problem02 {
+  import Euler._
+
   def main(args: Array[String]) {
-    val limit = 4000000
-    println(evenValuedFibonacciSum(limit))
+    println(go(4000000))
   }
 
-  def evenValuedFibonacciSum(upperBound: Int) = 
-    fibsFrom(1,2).takeWhile(_ <= upperBound).filter(_ % 2 == 0).sum
+  def apply(n: Long): String = go(n)
 
-  def fibsFrom(x: Int, y: Int): Stream[Int] =
-    x #:: fibsFrom(y,x+y)
+  def go(n: Long): String = {
+    val output = "Sum of even Fibonacci values up to %d: "
+    getOutput(output, evenFibSum)(n)
+  }
 
+  def evenFibSum(n: Long): Long =
+    even(to(fibsFrom(1,2), n)).sum
 }

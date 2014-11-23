@@ -6,20 +6,21 @@
 // Find the sum of all the multiples of 3 or 5 below 1000.
 package com.ryanponeill.euler
 
+import Euler._
+
 object Problem01 {
   def main(args: Array[String]) {
-    val output = "Sum of [3,5] multiples below %d: "
-
-    val verify = multipleSum(10)
-    println(output.format(10) + verify)
-
-    val answer = multipleSum(1000)
-    println(output.format(1000) + answer)
+    println(go(10))
+    println(go(100))
   }
 
-  def numsFrom(start: Int): Stream[Int] =
-    start #:: numsFrom(start+1)
+  def apply(n: Long): String = go(n)
 
-  def multipleSum(upperLimit: Int): Int = 
-    numsFrom(1).takeWhile(_ < upperLimit).filter(x => (x % 3 == 0) || (x % 5 == 0)).sum
+  def go(n: Long): String = {
+    val output = "Sum of [3,5] multiples below %d: "
+    getOutput(output, multipleSum)(n)
+  }
+
+  def multipleSum(n: Long): Long = 
+    numsFromUntil(1,n).filter(isMultipleOf(List(3,5))).sum
 }
