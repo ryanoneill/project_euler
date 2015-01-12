@@ -21,7 +21,7 @@ object Problem09 {
 
   def apply(n: Long): String = go(n)
 
-  def go(n: Long): String = { 
+  def go(n: Long): String = {
     pythagoreanTriple(n).map(answer.format(n,_)).getOrElse(noAnswer.format(n))
   }
 
