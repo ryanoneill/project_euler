@@ -73,10 +73,10 @@ object Euler {
   def getOutput[T](s: String, f: T => Long)(n: T): String =
     s.format(n) + f(n).toString
 
-  def lcm(a: Long, b: Long): Long = 
+  def lcm(a: Long, b: Long): Long =
     (a * b) / gcd(a, b)
 
-  def gcd(a: Long, b: Long): Long = 
+  def gcd(a: Long, b: Long): Long =
     if (a == b) a else if (a > b) gcd(a - b, a) else gcd(a, b - a)
 
   def nthPrime(n: Int): Long =
